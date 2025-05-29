@@ -6,7 +6,10 @@ function isLoggedIn() {
 
 function checkAuth() {
     const currentPage = window.location.pathname.split("/").pop();
-    if (!isLoggedIn() && currentPage === "home.html") {
+    if (isLoggedIn() && currentPage === "login.html") {
+        console.log("Already logged in, redirecting to home.html");
+        window.location.href = "home.html";
+    } else if (!isLoggedIn() && currentPage === "home.html") {
         console.log("Not logged in, redirecting to login.html");
         window.location.href = "login.html";
     }
