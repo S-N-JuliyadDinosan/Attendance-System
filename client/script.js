@@ -32,7 +32,7 @@ function login() {
                 localStorage.setItem("token", result.data);
                 localStorage.setItem("username", username);
                 console.log("Login successful, token:", result.data);
-
+                window.location.href = "home.html";
             } else {
                 errorElement.textContent = result.message || "Login failed";
                 console.warn("Login failed, response:", result);
