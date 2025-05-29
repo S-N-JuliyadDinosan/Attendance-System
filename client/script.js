@@ -1,5 +1,17 @@
 const API_URL = "http://localhost:8080/api/v1/users/login";
 
+function isLoggedIn() {
+    return localStorage.getItem("token") !== null;
+}
+
+function checkAuth() {
+    const currentPage = window.location.pathname.split("/").pop();
+    if (!isLoggedIn() && currentPage === "home.html") {
+        console.log("Not logged in, redirecting to login.html");
+        window.location.href = "login.html";
+    }
+}
+
 function login() {
     console.log("Login button clicked");
     const username = document.getElementById("username").value;
@@ -49,8 +61,11 @@ function logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     console.log("Successfully logged out, token and username removed from localStorage");
-    setTimeout(() => {
-        window.location.href = "login.html";
-        console.log("Redirected to login page");
-    }, 500);
+    window.location.href = "login.html";
+    console.log("Redirected to login page");
 }
+
+window.onload = () => {
+    console.log("Page loaded:", window.location.pathname);
+    checkAuth();
+};
