@@ -43,3 +43,14 @@ function login() {
             errorElement.textContent = "Error connecting to server: " + error.message;
         });
 }
+
+function logout() {
+    console.log("Logout button clicked");
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    console.log("Successfully logged out, token and username removed from localStorage");
+    setTimeout(() => {
+        window.location.href = "login.html";
+        console.log("Redirected to login page");
+    }, 500);
+}
